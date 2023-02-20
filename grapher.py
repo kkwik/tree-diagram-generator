@@ -11,7 +11,7 @@ def removeNonKeyValues(data: Dict[str, List[str]]):
 
 
 def generateGraph(graphData: Dict[str, List[str]]):
-    G = nx.Graph()
+    G = nx.DiGraph()
 
     for key in graphData:
         for value in graphData[key]:
