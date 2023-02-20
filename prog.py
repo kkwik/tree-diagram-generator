@@ -1,12 +1,28 @@
+from typing import Dict, List
 import networkx as nx
 import matplotlib.pyplot as plt
 import pydot
 
-G = nx.Graph()
-G.add_edge('A', 'B')
-G.add_edge('A', 'C')
-G.add_edge('B','D')
 
-PG = nx.nx_pydot.to_pydot(G)
+def generateGraph(graphData: Dict[str, List[str]]):
+    G = nx.Graph()
 
-PG.write_png('output.png')
+    for key in graphData:
+        for value in graphData[key]:
+            G.add_edge(key, value)
+
+    return G
+
+
+def outputGraphImage(graph: nx.Graph):
+    PG = nx.nx_pydot.to_pydot(graph)
+
+    PG.write_png('output.png')
+
+
+if __name__ == '__main__':
+    data = {'A': ['B', 'C'],
+            'B': ['D']}
+
+    graph = generateGraph(data)
+    outputGraphImage(graph)
