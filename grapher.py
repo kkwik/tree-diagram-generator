@@ -1,8 +1,5 @@
 from typing import Dict, List
 import networkx as nx
-import matplotlib.pyplot as plt
-import pydot
-
 
 def generateGraph(graphData: Dict[str, List[str]]):
     G = nx.Graph()
