@@ -1,6 +1,15 @@
 from typing import Dict, List
 import networkx as nx
 
+
+def removeNonKeyValues(data: Dict[str, List[str]]):
+    keys = set(data.keys())
+    for key, value in data.items():
+        new_value = keys.intersection(value)
+        data[key] = new_value
+    return data
+
+
 def generateGraph(graphData: Dict[str, List[str]]):
     G = nx.Graph()
 
@@ -20,6 +29,8 @@ def outputGraphImage(graph: nx.Graph):
 if __name__ == '__main__':
     data = {'A': ['B', 'C'],
             'B': ['D']}
+
+    data = removeNonKeyValues(data)
 
     graph = generateGraph(data)
     outputGraphImage(graph)
